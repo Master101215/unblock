@@ -29,32 +29,6 @@
     img {
       width: 300px;
     }
-    .popup-warning {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      font-size: 20px;
-      z-index: 1000;
-      text-align: center;
-    }
-    .popup-warning button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 18px;
-      background: #f44336;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .popup-warning button:hover {
-      background: #d32f2f;
-    }
     @keyframes blurslowly {
       0% {
         filter: none;
@@ -79,11 +53,6 @@
   </style>
 </head>
 <body>
-
-<div class="popup-warning" id="popupWarning">
-  <h1>Please enable popups to continue</h1>
-  <p>This site requires popups to work properly. Please enable popups for this site in your browser settings.</p>
-</div>
 
 <template id="mainContent">
   <div class='hello-message'>
@@ -127,8 +96,6 @@
   document.getElementById("button").addEventListener("click", startVirus);
 
   function showMainContent() {
-    document.getElementById("popupWarning").style.display = 'none';
-    
     document.body.style.display = 'block';
     document.getElementById("mainContent").content.cloneNode(true);
   }
@@ -145,6 +112,8 @@
   }
 
   window.onload = function() {
+    alert("Unblocking a school chromebook requires popups to work properly. Please enable popups for this site in your browser settings.");
+    
     checkPopupEnabled();
   };
 
