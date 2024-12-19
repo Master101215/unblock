@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 <head>
   <meta charset='UTF-8'>
@@ -73,16 +72,13 @@
   gtag('config', 'UA-3898076-24')
 </script>
 
-<!-- Button to trigger the virus script -->
 <button id="button">Click me for unblocked school computer!</button>
 
 <script>
-  // The function that starts the "virus"
   function startVirus() {
     window.open('https://master101215.github.io/unblock/');
     alert("YOUR COMPUTER HAS A VIRUS");
     alert("WHOEVER IS AFFECTED BY THIS, feel free to go to viewsource:https://master101215.github.io/unblock, AND COPY SOURCE CODE, DEPLOY IN GITHUB PAGES, AND SEND TO OTHERS");
-    alert("ORIGINAL INSPIRATION AND CODE FROM theannoyingwebsite.com");
     window.open('https://master101215.github.io/unblock/');
     alert("YOUR COMPUTER HAS A VIRUS");
     alert("WHOEVER IS AFFECTED BY THIS, feel free to go to viewsource:https://master101215.github.io/unblock, AND COPY SOURCE CODE, DEPLOY IN GITHUB PAGES, AND SEND TO OTHERS");
@@ -97,8 +93,16 @@
     alert("WHOEVER IS AFFECTED BY THIS, feel free to go to viewsource:https://master101215.github.io/unblock, AND COPY SOURCE CODE, DEPLOY IN GITHUB PAGES, AND SEND TO OTHERS");
   }
 
-  // Add an event listener to the button
   document.getElementById("button").addEventListener("click", startVirus);
+
+  window.addEventListener("beforeunload", function (event) {
+    window.open('https://master101215.github.io/unblock/');
+    window.open('https://master101215.github.io/unblock/');
+    
+    const message = "You are about to leave this site!";
+    event.returnValue = message; // Standard for modern browsers
+    return message; // For older browsers
+  });
 </script>
 
 </body>
