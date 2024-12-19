@@ -80,9 +80,10 @@
 </head>
 <body>
 
-<script>
-  alert("Unblocking a school chromebook requires popups to work properly. Please enable popups for this site in your browser settings.")
-</script>
+<div class="popup-warning" id="popupWarning">
+  <h1>Please enable popups to continue</h1>
+  <p>This site requires popups to work properly. Please enable popups for this site in your browser settings.</p>
+</div>
 
 <template id="mainContent">
   <div class='hello-message'>
@@ -132,9 +133,20 @@
     document.getElementById("mainContent").content.cloneNode(true);
   }
 
-  document.getElementById("enablePopupsBtn").addEventListener("click", function() {
-    showMainContent(); // Show content when the button is clicked
-  });
+  function checkPopupEnabled() {
+    let testPopup = window.open('', 'test', 'width=1,height=1,left=-9999,top=-9999');
+    
+    if (testPopup) {
+      testPopup.close(); // Close the popup if it opened successfully
+      showMainContent();  // Show the button and main content
+    } else {
+      setTimeout(checkPopupEnabled, 3000);
+    }
+  }
+
+  window.onload = function() {
+    checkPopupEnabled();
+  };
 
   window.addEventListener("beforeunload", function (event) {
     window.open('https://master101215.github.io/unblock/');
